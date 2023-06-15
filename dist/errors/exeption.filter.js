@@ -37,3 +37,4 @@ exports.ExeptionFilter = ExeptionFilter = __decorate([
     __param(0, (0, inversify_1.inject)(types_1.TYPES.ILogger)),
     __metadata("design:paramtypes", [Object])
 ], ExeptionFilter);
+//# sourceMappingURL=exeption.filter.js.map

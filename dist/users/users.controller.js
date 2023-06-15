@@ -24,7 +24,7 @@ let UserController = exports.UserController = class UserController extends base_
         this.loggerService = loggerService;
         this.bindRoutes([
             { path: '/register', method: 'post', function: this.register },
-            { path: '/login', method: 'post', function: this.login }
+            { path: '/login', method: 'post', function: this.login },
         ]);
     }
     login(req, res, next) {
@@ -39,3 +39,4 @@ exports.UserController = UserController = __decorate([
     __param(0, (0, inversify_1.inject)(types_1.TYPES.ILogger)),
     __metadata("design:paramtypes", [Object])
 ], UserController);
+//# sourceMappingURL=users.controller.js.map

@@ -31,3 +31,4 @@ exports.LoggerService = LoggerService = __decorate([
     (0, inversify_1.injectable)(),
     __metadata("design:paramtypes", [])
 ], LoggerService);
+//# sourceMappingURL=logger.service.js.map

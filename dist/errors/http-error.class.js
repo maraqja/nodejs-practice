@@ -10,3 +10,4 @@ class HTTPError extends Error {
     }
 }
 exports.HTTPError = HTTPError;
+//# sourceMappingURL=http-error.class.js.map

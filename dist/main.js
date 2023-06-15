@@ -22,3 +22,4 @@ function bootstrap() {
     return { appContainer, app };
 }
 _a = bootstrap(), exports.app = _a.app, exports.appContainer = _a.appContainer;
+//# sourceMappingURL=main.js.map

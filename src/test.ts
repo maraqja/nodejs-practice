@@ -6,7 +6,6 @@
 // // 	}
 // // }
 
-
 // // @Component(1)
 // // export class User {
 // // 	id: number
@@ -17,10 +16,7 @@
 // // 	}
 // // }
 
-
 // // console.log(new User().id)
-
-
 
 // // REFLECT METADATA
 // import 'reflect-metadata'
@@ -31,9 +27,8 @@
 // 		const meta = Reflect.getMetadata('a', target)
 // 		console.log(meta)
 // 	}
-	
-// }
 
+// }
 
 // function Prop(target: Object, name: string) {
 
@@ -44,9 +39,7 @@
 // 	@Prop prop: number
 // }
 
-
 // @Injectable('D')
 // export class D {
 // 	constructor(@Inject('C') c:C) {}
 // }
-
