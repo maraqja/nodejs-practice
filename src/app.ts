@@ -11,6 +11,7 @@ import { ConfigService } from './config/config.service';
 import { IExceptionFilter } from './errors/exeption.filter.interface';
 import { IConfigService } from './config/config.service.interface';
 import { PrismaService } from './database/prisma.service';
+import { AuthMiddleWare } from './common/auth.middleware';
 
 @injectable()
 export class App {
@@ -31,6 +32,8 @@ export class App {
 
 	useMiddleware(): void {
 		this.app.use(json()); // гглобально для всего приложения указываем что body запросов парсим в JSON
+		const authMiddleWare = new AuthMiddleWare(this.configService.get('JWT_SECRET'));
+		this.app.use(authMiddleWare.execute.bind(authMiddleWare));
 	}
 
 	useRoutes(): void {
