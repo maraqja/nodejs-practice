@@ -1,2 +1,6 @@
-./dist/
-./node_modules/
+/dist/
+/node_modules
+/.env
+/.clinic
+/prisma/dev.db
+/prisma/dev.db-journal
