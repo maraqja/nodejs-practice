@@ -26,14 +26,26 @@ export class UserController extends BaseController implements IUserController {
 				function: this.register,
 				middlewares: [new ValidateMiddleware(UserRegisterDto)],
 			},
-			{ path: '/login', method: 'post', function: this.login },
+			{
+				path: '/login',
+				method: 'post',
+				function: this.login,
+				middlewares: [new ValidateMiddleware(UserLoginDto)],
+			},
 		]);
 	}
 
-	login(req: Request<{}, {}, UserLoginDto>, res: Response, next: NextFunction): void {
-		this.ok(res, 'login');
-		console.log(req.body); // EXPRESS без body-parser-a сам не может распарсить body запроса, для этого в app.js создаем функцию useMiddleware()
-		// next(new HTTPError(401, 'Login error', 'login'));
+	async login(
+		{ body }: Request<{}, {}, UserLoginDto>,
+		res: Response,
+		next: NextFunction,
+	): Promise<void> {
+		const result = await this.userService.validateUser(body);
+		if (!result) {
+			return next(new HTTPError(401, 'Login error', 'login'));
+		}
+		this.ok(res, {});
+		// console.log(req.body); // EXPRESS без body-parser-a сам не может распарсить body запроса, для этого в app.js создаем функцию useMiddleware()
 	}
 
 	async register(

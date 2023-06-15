@@ -1,11 +1,19 @@
-import { hash } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 
 // ЭТО ЭНТИТИ, ОНО ИСПОЛЬЗУЕТСЯ ДЛЯ ИНКАПСУЛЯЦИИ БИЗНЕС-ЛОГИКИ, которая относится к конкретной сущности
 // ЭНТИТИ МАКСИМАЛЬНО ОТДЕЛЕНО ОТ ДРУГИХ ЧАСТЕЙ СИСТЕМЫ (ИЗОЛИРОВАНО), МОЖЕТ СОДЕРЖАТЬ НАБОРЫ ПОЛЕЗНЫХ МЕТОДОВ ДЛЯ РАБОТЫ С ПОЛЯМИ СУЩНОСТИ, ГЕТТЕРОВ И СЕТТЕРОВ
 export class User {
 	private _password: string; // не передаем в конструктор, т.к. хранить их в бд будем в захешированном виде
 
-	constructor(private readonly _email: string, private readonly _name: string) {}
+	constructor(
+		private readonly _email: string,
+		private readonly _name: string,
+		passwordHash?: string,
+	) {
+		if (passwordHash) {
+			this._password = passwordHash;
+		}
+	}
 
 	get email(): string {
 		return this._email;
@@ -22,5 +30,9 @@ export class User {
 	public async setPassword(password: string, salt: number): Promise<void> {
 		// не делаем обычным сеттером, тк обычные сеттеры не могут быть асинхронными
 		this._password = await hash(password, salt);
+	}
+
+	public async comparePassword(password: string): Promise<boolean> {
+		return compare(password, this.password);
 	}
 }
