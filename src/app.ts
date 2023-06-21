@@ -52,4 +52,9 @@ export class App {
 		this.server = this.app.listen(this.port);
 		this.logger.log(`Server started on localhost:${this.port}`);
 	}
+
+	public close(): void {
+		// нужен для того чтобы после e2e тестов закрыть APP
+		this.server.close();
+	}
 }

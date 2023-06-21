@@ -34,12 +34,12 @@ export interface IBootstrapReturn {
 	app: App;
 }
 
-function bootstrap(): IBootstrapReturn {
+async function bootstrap(): Promise<IBootstrapReturn> {
 	const appContainer = new Container(); // создаем IoC контейнер - там хранятся все биндинги символов на конкретные реализации для того чтобы переиспользовать
 	appContainer.load(appBindings); // загрузка модуля
 	const app = appContainer.get<App>(TYPES.Application);
-	app.init();
+	await app.init();
 	return { appContainer, app };
 }
 
-export const { app, appContainer } = bootstrap();
+export const boot = bootstrap();
